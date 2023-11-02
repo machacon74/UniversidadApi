@@ -3,11 +3,17 @@ using UniversidadApi.Models;
 
 namespace UniversidadApi.Repositories.GenericRepository
 {
-    public class GenericRepository<T, TId> : IGenericRepository<T, TId> 
+    public abstract class GenericRepository<T, TId> : IGenericRepository<T, TId> 
         where T : BaseEntity<TId> 
         where TId : IEquatable<TId>
     {
-        private readonly DbContext _context;
+        protected readonly DbContext _context;
+
+        public GenericRepository(DbContext context)
+        {
+            _context = context;
+        }
+
         protected DbSet<T> DataSet => _context.Set<T>();
 
         public IQueryable<T> GetAll() => DataSet;

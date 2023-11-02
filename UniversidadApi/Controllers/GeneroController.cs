@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using UniversidadApi.Models;
+using UniversidadApi.Services.GeneroService;
 
 namespace UniversidadApi.Controllers
 {
@@ -9,10 +10,17 @@ namespace UniversidadApi.Controllers
     [ApiController]
     public class GeneroController : ControllerBase
     {
-        [HttpGet]
-        public async Task<IActionResult> GetAllGeneros()
+        private readonly IGeneroService _generoService;
+
+        public GeneroController(IGeneroService generoService)
         {
-            var generos = data
+            _generoService = generoService;
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> GetAll()
+        {
+            var generos = await _generoService.GetAllGeneros();
             return Ok(generos);
         }
     }

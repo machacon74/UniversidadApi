@@ -4,10 +4,9 @@ namespace UniversidadApi.Services.GeneroService
 {
     public interface IGeneroService
     {
-        List<Genero> GetAllGeneros();
-        Genero GetGenero(int id);
-        Genero AddGenero (Genero entity);
-        Genero UpdateGenero(Genero entity);
-        void DeleteGenero(int id);
+        Task<List<Genero>> GetAllGeneros();
+        Task<Genero?> GetGenero(int id);
+        Task<Genero?> AddGenero (Genero entity);
+        Task<Genero?> UpdateGenero(Genero entity);
     }
 }
