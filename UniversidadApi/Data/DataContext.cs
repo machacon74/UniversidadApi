@@ -14,6 +14,7 @@ namespace UniversidadApi.Data
             base.OnConfiguring(optionsBuilder);
         }
 
+        public DbSet<Asignatura> Asignaturas { get; set; }
         public DbSet<Genero> Generos { get; set; }
     }
 }

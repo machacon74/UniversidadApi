@@ -1,12 +1,10 @@
 ﻿using UniversidadApi.Models;
+using UniversidadApi.Services.IService;
 
 namespace UniversidadApi.Services.GeneroService
 {
-    public interface IGeneroService
+    public interface IGeneroService : IService<Genero, short>
     {
-        Task<List<Genero>> GetAllGeneros();
-        Task<Genero?> GetGenero(short id);
-        Task<Genero?> AddGenero (Genero entity);
-        Task<Genero?> UpdateGenero(Genero entity);
+            
     }
 }
