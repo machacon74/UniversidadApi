@@ -5,12 +5,10 @@
         public string Nombre { get; set; }
         public short Creditos { get; set; }
 
-        public Asignatura(int id, string nombre, short creditos, bool activo)
+        public Asignatura(int id, string nombre, short creditos, bool activo) : base(id, activo)
         {
-            this.Id = id;
             this.Nombre = nombre;
             this.Creditos = creditos;
-            this.Activo = activo;
         }
     }
 }

@@ -5,12 +5,10 @@
         public string Nombre { get; set; } = string.Empty;
         public string Sigla { get; set; } = string.Empty;
 
-        public Genero(short id, string nombre, string sigla, bool activo)
+        public Genero(short id, string nombre, string sigla, bool activo) : base(id, activo)
         {
-            this.Id = id;
             this.Nombre = nombre;
             this.Sigla = sigla;
-            this.Activo = activo;
         }
     }
 }
