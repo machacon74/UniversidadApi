@@ -37,5 +37,12 @@ namespace UniversidadApi.Controllers
             genero = await _generoService.AddGenero(genero);
             return Ok(genero);
         }
+
+        [HttpPut]
+        public async Task<IActionResult> Update(Genero genero)
+        {
+            genero = await _generoService.UpdateGenero(genero);
+            return Ok(genero);
+        }
     }
 }
