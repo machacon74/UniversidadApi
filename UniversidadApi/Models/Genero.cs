@@ -5,9 +5,9 @@
         public string Nombre { get; set; } = string.Empty;
         public string Sigla { get; set; } = string.Empty;
 
-        public Genero(int idGenero, string nombre, string sigla, bool activo)
+        public Genero(int id, string nombre, string sigla, bool activo)
         {
-            Id = idGenero;
+            Id = id;
             Nombre = nombre;
             Sigla = sigla;
             Activo = activo;
