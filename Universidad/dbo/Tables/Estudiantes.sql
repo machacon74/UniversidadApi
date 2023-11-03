@@ -1,13 +1,15 @@
 ﻿CREATE TABLE [dbo].[Estudiantes] (
-    [ID_ESTUDIANTE]  INT           IDENTITY (1, 1) NOT NULL,
-    [IDENTIFICACION] VARCHAR (20)  DEFAULT ('') NOT NULL,
-    [NOMBRES]        VARCHAR (100) DEFAULT ('') NOT NULL,
-    [APELLIDOS]      VARCHAR (100) DEFAULT ('') NOT NULL,
-    [EDAD]           INT           DEFAULT ((0)) NOT NULL,
-    [ID_GENERO]      SMALLINT      NOT NULL,
-    [CURSO]          INT           DEFAULT ((0)) NOT NULL,
-    [ACTIVO]         BIT           DEFAULT ((0)) NOT NULL,
-    CONSTRAINT [PK_ESTUDIANTES] PRIMARY KEY CLUSTERED ([ID_ESTUDIANTE] ASC),
-    CONSTRAINT [FK_ESTUDIANTES_GENEROS] FOREIGN KEY ([ID_GENERO]) REFERENCES [dbo].[Generos] ([Id])
+    [Id]             INT           IDENTITY (1, 1) NOT NULL,
+    [Identificacion] VARCHAR (20)  DEFAULT ('') NOT NULL,
+    [Nombres]        VARCHAR (100) DEFAULT ('') NOT NULL,
+    [Apellidos]      VARCHAR (100) DEFAULT ('') NOT NULL,
+    [Edad]           INT           DEFAULT ((0)) NOT NULL,
+    [IdGenero]       SMALLINT      NOT NULL,
+    [Curso]          INT           DEFAULT ((0)) NOT NULL,
+    [Activo]         BIT           DEFAULT ((0)) NOT NULL,
+    CONSTRAINT [PK_ESTUDIANTES] PRIMARY KEY CLUSTERED ([Id] ASC),
+    CONSTRAINT [FK_ESTUDIANTES_GENEROS] FOREIGN KEY ([IdGenero]) REFERENCES [dbo].[Generos] ([Id])
 );
+
+
 
