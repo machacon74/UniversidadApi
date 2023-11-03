@@ -23,5 +23,12 @@ namespace UniversidadApi.Controllers
             var generos = await _generoService.GetAllGeneros();
             return Ok(generos);
         }
+
+        [HttpPost]
+        public async Task<IActionResult> Add(Genero genero)
+        {
+            genero = await _generoService.AddGenero(genero);
+            return Ok(genero);
+        }
     }
 }

@@ -3,7 +3,7 @@ using UniversidadApi.Repositories.GenericRepository;
 
 namespace UniversidadApi.Repositories.GeneroRepository
 {
-    public class GeneroRepository : GenericRepository<Genero, int>, IGeneroRepository
+    public class GeneroRepository : GenericRepository<Genero, short>, IGeneroRepository
     {
         public GeneroRepository(DbContext context) : base(context) { }
     }

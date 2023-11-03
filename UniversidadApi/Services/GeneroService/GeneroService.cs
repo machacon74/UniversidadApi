@@ -16,7 +16,7 @@ namespace UniversidadApi.Services.GeneroService
             return await UnitOfWork.GeneroRepository.GetAll().ToListAsync();
         }
 
-        public async Task<Genero?> GetGenero(int id)
+        public async Task<Genero?> GetGenero(short id)
         {
             return await UnitOfWork.GeneroRepository.GetByID(id);
         }

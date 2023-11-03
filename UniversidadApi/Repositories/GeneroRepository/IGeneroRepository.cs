@@ -3,7 +3,7 @@ using UniversidadApi.Repositories.GenericRepository;
 
 namespace UniversidadApi.Repositories.GeneroRepository
 {
-    public interface IGeneroRepository : IGenericRepository<Genero, int>
+    public interface IGeneroRepository : IGenericRepository<Genero, short>
     {
     }
 }
