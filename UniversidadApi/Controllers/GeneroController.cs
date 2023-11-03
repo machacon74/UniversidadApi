@@ -17,11 +17,18 @@ namespace UniversidadApi.Controllers
             _generoService = generoService;
         }
 
-        [HttpGet]
+        [HttpGet("GetAll")]
         public async Task<IActionResult> GetAll()
         {
             var generos = await _generoService.GetAllGeneros();
             return Ok(generos);
+        }
+
+        [HttpGet("GetById")]
+        public async Task<IActionResult> GetById(short id)
+        {
+            var genero = await _generoService.GetGenero(id);
+            return Ok(genero);
         }
 
         [HttpPost]
