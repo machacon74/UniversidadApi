@@ -7,10 +7,10 @@
 
         public Genero(short id, string nombre, string sigla, bool activo)
         {
-            Id = id;
-            Nombre = nombre;
-            Sigla = sigla;
-            Activo = activo;
+            this.Id = id;
+            this.Nombre = nombre;
+            this.Sigla = sigla;
+            this.Activo = activo;
         }
     }
 }
