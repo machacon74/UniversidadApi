@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using UniversidadApi.Models;
-using UniversidadApi.Services.GeneroService;
+using UniversidadApi.Services.EstudianteService;
 
 namespace UniversidadApi.Controllers
 {
@@ -11,37 +11,37 @@ namespace UniversidadApi.Controllers
     {
         private readonly IEstudianteService _estudianteService;
 
-        public EstudianteController(IGeneroService generoService)
+        public EstudianteController(IEstudianteService estudianteService)
         {
-            _estudianteService = generoService;
+            _estudianteService = estudianteService;
         }
 
         [HttpGet("GetAll")]
         public async Task<IActionResult> GetAll()
         {
-            var generos = await _estudianteService.GetAll();
-            return Ok(generos);
+            var estudiantes = await _estudianteService.GetAll();
+            return Ok(estudiantes);
         }
 
         [HttpGet("GetById")]
         public async Task<IActionResult> GetById(short id)
         {
-            var genero = await _estudianteService.GetById(id);
-            return Ok(genero);
+            var estudiante = await _estudianteService.GetById(id);
+            return Ok(estudiante);
         }
 
         [HttpPost]
-        public async Task<IActionResult> Add(Genero genero)
+        public async Task<IActionResult> Add(Estudiante estudiante)
         {
-            genero = await _estudianteService.Add(genero);
-            return Ok(genero);
+            estudiante = await _estudianteService.Add(estudiante);
+            return Ok(estudiante);
         }
 
         [HttpPut]
-        public async Task<IActionResult> Update(Genero genero)
+        public async Task<IActionResult> Update(Estudiante estudiante)
         {
-            genero = await _estudianteService.Update(genero);
-            return Ok(genero);
+            estudiante = await _estudianteService.Update(estudiante);
+            return Ok(estudiante);
         }
     }
 }
