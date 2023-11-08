@@ -9,7 +9,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Api", "Api", "{EFE550D3-7AE
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Base de Datos", "Base de Datos", "{EC04C7BC-D137-4C77-90E3-B57EFD3AB6F5}"
 EndProject
-Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "Universidad", "Universidad\Universidad.sqlproj", "{D8C02F06-3497-480D-97C8-51003B1039B4}"
+Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "UniversidadBD", "Universidad\UniversidadBD.sqlproj", "{D8C02F06-3497-480D-97C8-51003B1039B4}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "WebApi", "WebApi", "{76D10172-D689-41E5-832C-873E90EEAF45}"
 EndProject
