@@ -19,29 +19,29 @@ namespace UniversidadApi.Controllers
         [HttpGet("GetAll")]
         public async Task<IActionResult> GetAll()
         {
-            var asignaturas = await _asignaturaService.GetAll();
-            return Ok(asignaturas);
+            var respuesta = await _asignaturaService.GetAll();
+            return Ok(respuesta);
         }
 
         [HttpGet("GetById")]
         public async Task<IActionResult> GetById(short id)
         {
-            var asignatura = await _asignaturaService.GetById(id);
-            return Ok(asignatura);
+            var respuesta = await _asignaturaService.GetById(id);
+            return Ok(respuesta);
         }
 
         [HttpPost]
         public async Task<IActionResult> Add(Asignatura asignatura)
         {
-            asignatura = await _asignaturaService.Add(asignatura);
-            return Ok(asignatura);
+            var respuesta = await _asignaturaService.Add(asignatura);
+            return Ok(respuesta);
         }
 
         [HttpPut]
         public async Task<IActionResult> Update(Asignatura asignatura)
         {
-            asignatura = await _asignaturaService.Update(asignatura);
-            return Ok(asignatura);
+            var respuesta = await _asignaturaService.Update(asignatura);
+            return Ok(respuesta);
         }
     }
 }
