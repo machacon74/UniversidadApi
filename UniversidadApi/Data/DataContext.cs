@@ -15,7 +15,7 @@ namespace UniversidadApi.Data
         }
 
         public DbSet<Asignatura> Asignaturas { get; set; }
-        public DbSet<Calificacion> Calificacions { get; set; }
+        public DbSet<Calificacion> Calificaciones { get; set; }
         public DbSet<Estudiante> Estudiantes { get; set; }
         public DbSet<Genero> Generos { get; set; }
     }
