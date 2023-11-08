@@ -13,11 +13,12 @@ namespace UniversidadApi.Services.CalificacionService
 
         public async Task<RespuestaGeneral> Add(Calificacion calificacion)
         {
-            var respuesta = await ValidarNewCalificacion(calificacion);
+            var respuesta = await ValidarCalificacion(calificacion);
             if (respuesta.Codigo != 1)
                 return respuesta;
 
             calificacion = await _unitOfWork.CalificacionRepository.Add(calificacion);
+            await _unitOfWork.SaveChanges();
             return new RespuestaGeneral(1)
             {
                 DatosRespuesta = calificacion
@@ -41,26 +42,27 @@ namespace UniversidadApi.Services.CalificacionService
                 return respuesta;
 
             calificacion = _unitOfWork.CalificacionRepository.Update(calificacion);
+            await _unitOfWork.SaveChanges();
             respuesta.DatosRespuesta = calificacion;
             return respuesta;
         }
 
         #region Validaciones
 
-        private async Task<RespuestaGeneral> ValidarNewCalificacion(Calificacion calificacion)
+        private async Task<RespuestaGeneral> ValidarOldCalificacion(Calificacion calificacion)
         {
             //Si la calificacion no existe
             if (!await _unitOfWork.CalificacionRepository.Exists(calificacion.Id))
                 return new RespuestaGeneral(0, $"{nameof(Calificacion)} no existe.");
 
-            var respuesta = await ValidarOldCalificacion(calificacion);
+            var respuesta = await ValidarCalificacion(calificacion);
             if (respuesta.Codigo != 1)
                 return respuesta;
 
             return new RespuestaGeneral(1);
         }
 
-        private async Task<RespuestaGeneral> ValidarOldCalificacion (Calificacion calificacion)
+        private async Task<RespuestaGeneral> ValidarCalificacion (Calificacion calificacion)
         {
             //Se valida si el Estudiante existe en BD
             if (!await _unitOfWork.EstudianteRepository.Exists(calificacion.IdEstudiante))

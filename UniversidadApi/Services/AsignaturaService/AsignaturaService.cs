@@ -5,34 +5,50 @@ namespace UniversidadApi.Services.AsignaturaService
     public class AsignaturaService : IAsignaturaService
     {
         private readonly IUnitOfWork _unitOfWork;
+        private readonly IConfiguration _configuration;
 
-        public AsignaturaService(IUnitOfWork unitOfWork)
+        public AsignaturaService(IUnitOfWork unitOfWork, IConfiguration configuration)
         {
             _unitOfWork = unitOfWork;
+            _configuration = configuration;
         }
 
-        public async Task<List<Asignatura>> GetAll()
+        public async Task<RespuestaGeneral> GetAll()
         {
-            return await _unitOfWork.AsignaturaRepository.GetAll().ToListAsync();
+            return new RespuestaGeneral(1) { DatosRespuesta = await _unitOfWork.AsignaturaRepository.GetAll().ToListAsync() };
         }
 
-        public async Task<Asignatura?> GetById(int id)
+        public async Task<RespuestaGeneral> GetById(int id)
         {
-            return await _unitOfWork.AsignaturaRepository.GetByID(id);
+            return new RespuestaGeneral(1) { DatosRespuesta = await _unitOfWork.AsignaturaRepository.GetByID(id) };
         }
 
-        public async Task<Asignatura?> Add(Asignatura entity)
+        public async Task<RespuestaGeneral> Add(Asignatura asignatura)
         {
-            var genero = await _unitOfWork.AsignaturaRepository.Add(entity);
+            asignatura = await _unitOfWork.AsignaturaRepository.Add(asignatura);
             await _unitOfWork.SaveChanges();
-            return genero;
+            return new RespuestaGeneral(1)
+            {
+                DatosRespuesta = asignatura
+            };
         }
 
-        public async Task<Asignatura?> Update(Asignatura entity)
+        public async Task<RespuestaGeneral> Update(Asignatura asignatura)
         {
-            var genero = _unitOfWork.AsignaturaRepository.Update(entity);
-            await _unitOfWork.SaveChanges();
-            return genero;
+            //Si la asignatura no existe
+            if (!await _unitOfWork.AsignaturaRepository.Exists(asignatura.Id))
+                return new RespuestaGeneral(0, $"{nameof(Asignatura)} no existe.");
+
+            try
+            {
+                asignatura = _unitOfWork.AsignaturaRepository.Update(asignatura);
+                await _unitOfWork.SaveChanges();
+                return new RespuestaGeneral(1) { DatosRespuesta = asignatura };
+            }
+            catch (Exception ex)
+            {
+                return new RespuestaGeneral(0, ex.ToString());
+            }
         }
     }
 }
