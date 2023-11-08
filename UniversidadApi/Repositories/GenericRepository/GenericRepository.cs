@@ -31,5 +31,7 @@ namespace UniversidadApi.Repositories.GenericRepository
             EntityEntry<T> result = DataSet.Update(entity);
             return result.Entity;
         }
+
+        public async Task<bool> Exists(TId id) => await DataSet.AnyAsync(e => e.Id.Equals(id));
     }
 }

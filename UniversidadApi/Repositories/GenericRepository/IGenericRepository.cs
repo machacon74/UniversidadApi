@@ -8,5 +8,6 @@ namespace UniversidadApi.Repositories.GenericRepository
         Task<T?> GetByID(TId id);
         Task<T?> Add(T entity);
         T? Update(T entity);
+        Task<bool> Exists(TId id);
     }
 }
