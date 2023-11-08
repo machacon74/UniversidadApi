@@ -1,4 +1,5 @@
-﻿using UniversidadApi.Models;
+﻿using System.Security.Cryptography.Xml;
+using UniversidadApi.Models;
 
 namespace UniversidadApi.Services.GeneroService
 {
@@ -11,28 +12,44 @@ namespace UniversidadApi.Services.GeneroService
             _unitOfWork = unitOfWork;
         }
 
-        public async Task<List<Genero>> GetAll()
+        public async Task<RespuestaGeneral> GetAll()
         {
-            return await _unitOfWork.GeneroRepository.GetAll().ToListAsync();
+            return new RespuestaGeneral(1)
+            {
+                DatosRespuesta = await _unitOfWork.GeneroRepository.GetAll().ToListAsync()
+            };
         }
 
-        public async Task<Genero?> GetById(short id)
+        public async Task<RespuestaGeneral> GetById(short id)
         {
-            return await _unitOfWork.GeneroRepository.GetByID(id);
-        }
-        
-        public async Task<Genero?> Add(Genero entity)
-        {
-            var genero = await _unitOfWork.GeneroRepository.Add(entity);
-            await _unitOfWork.SaveChanges();
-            return genero;
+            return new RespuestaGeneral(1)
+            {
+                DatosRespuesta = await _unitOfWork.GeneroRepository.GetByID(id)
+            };
         }
 
-        public async Task<Genero?> Update(Genero entity)
+        public async Task<RespuestaGeneral> Add(Genero genero)
         {
-            var genero = _unitOfWork.GeneroRepository.Update(entity);
+            genero = await _unitOfWork.GeneroRepository.Add(genero);
             await _unitOfWork.SaveChanges();
-            return genero;
+            return new RespuestaGeneral(1)
+            {
+                DatosRespuesta = genero
+            };
+        }
+
+        public async Task<RespuestaGeneral> Update(Genero genero)
+        {
+            //Si el genero no existe
+            if (!await _unitOfWork.GeneroRepository.Exists(genero.Id))
+                return new RespuestaGeneral(0, $"{nameof(Genero)} no existe.");
+
+            genero = _unitOfWork.GeneroRepository.Update(genero);
+            await _unitOfWork.SaveChanges();
+            return new RespuestaGeneral(1)
+            {
+                DatosRespuesta = genero
+            };
         }
     }
 }
