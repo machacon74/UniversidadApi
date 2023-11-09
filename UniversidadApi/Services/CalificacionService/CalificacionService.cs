@@ -13,16 +13,23 @@ namespace UniversidadApi.Services.CalificacionService
 
         public async Task<RespuestaGeneral> Add(Calificacion calificacion)
         {
-            var respuesta = await ValidarCalificacion(calificacion);
-            if (respuesta.Codigo != 1)
-                return respuesta;
-
-            calificacion = await _unitOfWork.CalificacionRepository.Add(calificacion);
-            await _unitOfWork.SaveChanges();
-            return new RespuestaGeneral(1)
+            try
             {
-                DatosRespuesta = calificacion
-            };
+                var respuesta = await ValidarCalificacion(calificacion);
+                if (respuesta.Codigo != 1)
+                    return respuesta;
+
+                calificacion = await _unitOfWork.CalificacionRepository.Add(calificacion);
+                await _unitOfWork.SaveChanges();
+                return new RespuestaGeneral(1)
+                {
+                    DatosRespuesta = calificacion
+                };
+            }
+            catch (Exception ex)
+            {
+                return new RespuestaGeneral(-1, ex.ToString());
+            }
         }
 
         public async Task<RespuestaGeneral> GetAll()
@@ -71,6 +78,12 @@ namespace UniversidadApi.Services.CalificacionService
             //Se valida si la Asignatura existe en BD
             if (!await _unitOfWork.AsignaturaRepository.Exists(calificacion.IdAsignatura))
                 return new RespuestaGeneral(0, $"{nameof(Asignatura)} no existe.");
+
+            if(await _unitOfWork.CalificacionRepository.GetAll().AnyAsync(
+                c => c.IdAsignatura.Equals(calificacion.IdAsignatura)
+                && c.IdEstudiante.Equals(calificacion.IdEstudiante)
+                && c.Corte == calificacion.Corte))
+                return new RespuestaGeneral(0, $"{nameof(Estudiante)} ya cuenta con {nameof(Calificacion)} para esta {nameof(Asignatura)} y {nameof(Calificacion.Corte)}.");
 
             return new RespuestaGeneral(1);
         }

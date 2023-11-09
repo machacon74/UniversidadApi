@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.Data;
 
 namespace UniversidadApi.Models
 {
@@ -9,6 +10,7 @@ namespace UniversidadApi.Models
         [Range(1, 3)]
         public short Corte { get; set; }
         [Range(0, 5)]
+        [Precision(3, 2)]
         public decimal Nota { get; set; }
 
         public Calificacion(int id, int idEstudiante, int idAsignatura, short corte, decimal nota, bool activo) : base(id, activo)

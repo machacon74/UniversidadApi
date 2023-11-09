@@ -13,6 +13,8 @@ namespace UniversidadApi.Services.EstudianteService
 
         public async Task<RespuestaGeneral> Add(Estudiante estudiante)
         {
+            if(await _unitOfWork.EstudianteRepository.GetAll().AnyAsync(e => e.Identificacion.Equals(estudiante.Identificacion)))
+                return new RespuestaGeneral(0, $"{nameof(Estudiante)} ya existe con esta {nameof(Estudiante.Identificacion)}");
 
             estudiante = await _unitOfWork.EstudianteRepository.Add(estudiante);
             await _unitOfWork.SaveChanges();
@@ -40,6 +42,9 @@ namespace UniversidadApi.Services.EstudianteService
 
         public async Task<RespuestaGeneral> Update(Estudiante estudiante)
         {
+            if (await _unitOfWork.EstudianteRepository.GetByID(estudiante.Id) is null)
+                return new RespuestaGeneral(0, $"{nameof(Estudiante)} no existe.");
+
             estudiante = _unitOfWork.EstudianteRepository.Update(estudiante);
             await _unitOfWork.SaveChanges();
             return new RespuestaGeneral(1)
