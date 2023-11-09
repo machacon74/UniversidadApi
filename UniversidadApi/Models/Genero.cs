@@ -1,18 +1,14 @@
 ﻿namespace UniversidadApi.Models
 {
-    public class Genero
+    public class Genero : BaseEntity<short>
     {
-        public int IdGenero { get; set; }
         public string Nombre { get; set; } = string.Empty;
         public string Sigla { get; set; } = string.Empty;
-        public bool Activo { get; set; } = true;
 
-        public Genero(int idGenero, string nombre, string sigla, bool activo)
+        public Genero(short id, string nombre, string sigla, bool activo) : base(id, activo)
         {
-            IdGenero = idGenero;
-            Nombre = nombre;
-            Sigla = sigla;
-            Activo = activo;
+            this.Nombre = nombre;
+            this.Sigla = sigla;
         }
     }
 }

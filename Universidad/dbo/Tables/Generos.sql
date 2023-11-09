@@ -1,0 +1,8 @@
+﻿CREATE TABLE [dbo].[Generos] (
+    [Id]     SMALLINT      IDENTITY (1, 1) NOT NULL,
+    [Nombre] VARCHAR (100) DEFAULT ('') NOT NULL,
+    [Sigla]  VARCHAR (5)   DEFAULT ('') NOT NULL,
+    [Activo] BIT           CONSTRAINT [DF_GENEROS_ACTIVO] DEFAULT ((1)) NOT NULL,
+    CONSTRAINT [PK_GENEROS] PRIMARY KEY CLUSTERED ([Id] ASC)
+);
+

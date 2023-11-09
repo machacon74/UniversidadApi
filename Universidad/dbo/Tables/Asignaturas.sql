@@ -1,0 +1,10 @@
+﻿CREATE TABLE [dbo].[Asignaturas] (
+    [Id]       INT           IDENTITY (1, 1) NOT NULL,
+    [Nombre]   VARCHAR (100) CONSTRAINT [DF_ASIGNATURAS_NOMBRE] DEFAULT ('') NOT NULL,
+    [Creditos] SMALLINT      CONSTRAINT [DF_Asignaturas_Creditos] DEFAULT ((0)) NOT NULL,
+    [Activo]   BIT           CONSTRAINT [DF_ASIGNATURAS_ACTIVO] DEFAULT ((1)) NOT NULL,
+    CONSTRAINT [PK_ASIGNATURAS] PRIMARY KEY CLUSTERED ([Id] ASC)
+);
+
+
+
