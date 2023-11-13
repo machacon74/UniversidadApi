@@ -27,6 +27,7 @@ namespace UniversidadApi.Services.AsignaturaService
         {
             asignatura = await _unitOfWork.AsignaturaRepository.Add(asignatura);
             await _unitOfWork.SaveChanges();
+            _unitOfWork.Dispose();
             return new RespuestaGeneral(1)
             {
                 DatosRespuesta = asignatura

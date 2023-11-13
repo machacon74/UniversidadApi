@@ -18,6 +18,7 @@ namespace UniversidadApi.Services.EstudianteService
 
             estudiante = await _unitOfWork.EstudianteRepository.Add(estudiante);
             await _unitOfWork.SaveChanges();
+            _unitOfWork.Dispose();
             return new RespuestaGeneral(1)
             {
                 DatosRespuesta = estudiante
@@ -42,11 +43,12 @@ namespace UniversidadApi.Services.EstudianteService
 
         public async Task<RespuestaGeneral> Update(Estudiante estudiante)
         {
-            if (await _unitOfWork.EstudianteRepository.GetByID(estudiante.Id) is null)
+            if (!await _unitOfWork.EstudianteRepository.Exists(estudiante.Id))
                 return new RespuestaGeneral(0, $"{nameof(Estudiante)} no existe.");
 
             estudiante = _unitOfWork.EstudianteRepository.Update(estudiante);
             await _unitOfWork.SaveChanges();
+            _unitOfWork.Dispose();
             return new RespuestaGeneral(1)
             {
                 DatosRespuesta = estudiante
