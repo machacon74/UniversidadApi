@@ -1,4 +1,4 @@
-﻿namespace UniversidadApi.Models
+﻿namespace Entity.Models
 {
     public class Genero : BaseEntity<short>
     {
@@ -7,8 +7,8 @@
 
         public Genero(short id, string nombre, string sigla, bool activo) : base(id, activo)
         {
-            this.Nombre = nombre;
-            this.Sigla = sigla;
+            Nombre = nombre;
+            Sigla = sigla;
         }
     }
 }

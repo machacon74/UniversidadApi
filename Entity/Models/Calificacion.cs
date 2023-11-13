@@ -1,7 +1,8 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Microsoft.EntityFrameworkCore;
+using System.ComponentModel.DataAnnotations;
 using System.Data;
 
-namespace UniversidadApi.Models
+namespace Entity.Models
 {
     public class Calificacion : BaseEntity<int>
     {

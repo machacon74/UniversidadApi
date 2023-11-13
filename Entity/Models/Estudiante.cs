@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace UniversidadApi.Models
+namespace Entity.Models
 {
     public class Estudiante : BaseEntity<int>
     {

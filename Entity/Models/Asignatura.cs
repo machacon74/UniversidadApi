@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace UniversidadApi.Models
+namespace Entity.Models
 {
     public class Asignatura : BaseEntity<int>
     {
@@ -11,8 +11,8 @@ namespace UniversidadApi.Models
 
         public Asignatura(int id, string nombre, short creditos, bool activo) : base(id, activo)
         {
-            this.Nombre = nombre;
-            this.Creditos = creditos;
+            Nombre = nombre;
+            Creditos = creditos;
         }
     }
 }

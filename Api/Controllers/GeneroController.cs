@@ -1,7 +1,6 @@
 ﻿global using UniversidadApi.Data;
-using Microsoft.AspNetCore.Http;
+using Entity.Models;
 using Microsoft.AspNetCore.Mvc;
-using UniversidadApi.Models;
 using UniversidadApi.Services.GeneroService;
 
 namespace UniversidadApi.Controllers

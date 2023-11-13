@@ -1,4 +1,4 @@
-﻿using UniversidadApi.Models;
+﻿using Entity.Models;
 using UniversidadApi.Services.IService;
 
 namespace UniversidadApi.Services.CalificacionService

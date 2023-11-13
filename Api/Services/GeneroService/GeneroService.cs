@@ -1,5 +1,4 @@
-﻿using System.Security.Cryptography.Xml;
-using UniversidadApi.Models;
+﻿using Entity.Models;
 
 namespace UniversidadApi.Services.GeneroService
 {

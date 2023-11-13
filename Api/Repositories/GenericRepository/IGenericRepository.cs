@@ -1,6 +1,4 @@
-﻿using UniversidadApi.Models;
-
-namespace UniversidadApi.Repositories.GenericRepository
+﻿namespace UniversidadApi.Repositories.GenericRepository
 {
     public interface IGenericRepository<T, TId>
     {

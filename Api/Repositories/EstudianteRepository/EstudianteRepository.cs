@@ -1,6 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
-using System.Security.Cryptography;
-using UniversidadApi.Models;
+﻿using Entity.Models;
 using UniversidadApi.Repositories.GenericRepository;
 
 namespace UniversidadApi.Repositories.EstudianteRepository

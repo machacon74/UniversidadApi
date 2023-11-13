@@ -1,9 +1,8 @@
-﻿using UniversidadApi.Models;
+﻿using Entity.Models;
 using UniversidadApi.Repositories.GenericRepository;
 
-namespace UniversidadApi.Repositories.AsignaturaRepository
+namespace UniversidadApi.Repositories.AsignaturaRepository;
+
+public interface IAsignaturaRepository : IGenericRepository<Asignatura, int>
 {
-    public interface IAsignaturaRepository : IGenericRepository<Asignatura, int>
-    {
-    }
 }

@@ -1,5 +1,5 @@
 ﻿global using Microsoft.EntityFrameworkCore;
-using UniversidadApi.Models;
+using Entity.Models;
 
 namespace UniversidadApi.Data
 {

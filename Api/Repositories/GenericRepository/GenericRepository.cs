@@ -1,5 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore.ChangeTracking;
-using UniversidadApi.Models;
+﻿using Entity.Models;
+using Microsoft.EntityFrameworkCore.ChangeTracking;
 
 namespace UniversidadApi.Repositories.GenericRepository
 {

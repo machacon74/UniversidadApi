@@ -1,4 +1,4 @@
-﻿namespace UniversidadApi.Models
+﻿namespace Entity.Models
 {
     public class RespuestaGeneral
     {

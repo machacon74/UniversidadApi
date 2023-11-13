@@ -1,6 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Entity.Models;
 using Microsoft.AspNetCore.Mvc;
-using UniversidadApi.Models;
 using UniversidadApi.Services.EstudianteService;
 
 namespace UniversidadApi.Controllers

@@ -1,4 +1,4 @@
-﻿using UniversidadApi.Models;
+﻿using Entity.Models;
 
 namespace UniversidadApi.Services.EstudianteService
 {
