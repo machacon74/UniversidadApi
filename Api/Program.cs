@@ -1,5 +1,5 @@
-using Microsoft.Extensions.Configuration;
-using System.Text.Json;
+global using Microsoft.EntityFrameworkCore;
+using UniversidadApi.Data;
 using UniversidadApi.Repositories.AsignaturaRepository;
 using UniversidadApi.Repositories.CalificacionRepository;
 using UniversidadApi.Repositories.EstudianteRepository;

@@ -1,4 +1,5 @@
 ﻿using Entity.Models;
+using UniversidadApi.Data;
 
 namespace UniversidadApi.Services.AsignaturaService
 {

@@ -1,5 +1,4 @@
-﻿global using UniversidadApi.Data;
-using Entity.Models;
+﻿using Entity.Models;
 using Microsoft.AspNetCore.Mvc;
 using UniversidadApi.Services.GeneroService;
 
