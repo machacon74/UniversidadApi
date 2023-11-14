@@ -83,7 +83,8 @@ namespace UniversidadApi.Services.CalificacionService
             if(await _unitOfWork.CalificacionRepository.GetAll().AnyAsync(
                 c => c.IdAsignatura.Equals(calificacion.IdAsignatura)
                 && c.IdEstudiante.Equals(calificacion.IdEstudiante)
-                && c.Corte == calificacion.Corte))
+                && c.Corte == calificacion.Corte
+                && c.Id != calificacion.Id))
                 return new RespuestaGeneral(0, $"{nameof(Estudiante)} ya cuenta con {nameof(Calificacion)} para esta {nameof(Asignatura)} y {nameof(Calificacion.Corte)}.");
 
             return new RespuestaGeneral(1);
