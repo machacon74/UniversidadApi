@@ -22,36 +22,49 @@ namespace UniversidadApi.Services.CalificacionService
 
                 calificacion = await _unitOfWork.CalificacionRepository.Add(calificacion);
                 await _unitOfWork.SaveChanges();
-                return new RespuestaGeneral(1)
+                return new RespuestaGeneral<Calificacion>()
                 {
+                    Codigo = 1,
                     DatosRespuesta = calificacion
                 };
             }
             catch (Exception ex)
             {
-                return new RespuestaGeneral(-1, ex.ToString());
+                return new RespuestaGeneral<Calificacion>(0, ex.ToString());
             }
         }
 
         public async Task<RespuestaGeneral> GetAll()
         {
-            return new RespuestaGeneral(1) { DatosRespuesta = await _unitOfWork.CalificacionRepository.GetAll().ToListAsync() };
+            return new RespuestaGeneral<List<Calificacion>>() 
+            { 
+                Codigo = 1,
+                DatosRespuesta = await _unitOfWork.CalificacionRepository.GetAll().ToListAsync() 
+            };
         }
 
         public async Task<RespuestaGeneral> GetById(int id)
         {
-            return new RespuestaGeneral(1) { DatosRespuesta = await _unitOfWork.CalificacionRepository.GetByID(id) };
+            return new RespuestaGeneral<Calificacion>() 
+            {
+                Codigo = 1,
+                DatosRespuesta = await _unitOfWork.CalificacionRepository.GetByID(id) 
+            };
         }
 
         public async Task<RespuestaGeneral> Update(Calificacion calificacion)
         {
-            RespuestaGeneral respuesta = await ValidarOldCalificacion(calificacion);
+            var respuesta = await ValidarOldCalificacion(calificacion);
             if (respuesta.Codigo != 1)
                 return respuesta;
 
             calificacion = _unitOfWork.CalificacionRepository.Update(calificacion);
             await _unitOfWork.SaveChanges();
-            respuesta.DatosRespuesta = calificacion;
+            respuesta = new RespuestaGeneral<Calificacion>()
+            {
+                Codigo = 1,
+                DatosRespuesta = calificacion
+            };
             return respuesta;
         }
 
@@ -70,7 +83,7 @@ namespace UniversidadApi.Services.CalificacionService
             return new RespuestaGeneral(1);
         }
 
-        private async Task<RespuestaGeneral> ValidarCalificacion (Calificacion calificacion)
+        private async Task<RespuestaGeneral> ValidarCalificacion(Calificacion calificacion)
         {
             //Se valida si el Estudiante existe en BD
             if (!await _unitOfWork.EstudianteRepository.Exists(calificacion.IdEstudiante))
@@ -80,7 +93,7 @@ namespace UniversidadApi.Services.CalificacionService
             if (!await _unitOfWork.AsignaturaRepository.Exists(calificacion.IdAsignatura))
                 return new RespuestaGeneral(0, $"{nameof(Asignatura)} no existe.");
 
-            if(await _unitOfWork.CalificacionRepository.GetAll().AnyAsync(
+            if (await _unitOfWork.CalificacionRepository.GetAll().AnyAsync(
                 c => c.IdAsignatura.Equals(calificacion.IdAsignatura)
                 && c.IdEstudiante.Equals(calificacion.IdEstudiante)
                 && c.Corte == calificacion.Corte

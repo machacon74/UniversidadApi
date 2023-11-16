@@ -16,12 +16,20 @@ namespace UniversidadApi.Services.AsignaturaService
 
         public async Task<RespuestaGeneral> GetAll()
         {
-            return new RespuestaGeneral(1) { DatosRespuesta = await _unitOfWork.AsignaturaRepository.GetAll().ToListAsync() };
+            return new RespuestaGeneral<List<Asignatura>> () 
+            { 
+                Codigo = 1,
+                DatosRespuesta = await _unitOfWork.AsignaturaRepository.GetAll().ToListAsync() 
+            };
         }
 
         public async Task<RespuestaGeneral> GetById(int id)
         {
-            return new RespuestaGeneral(1) { DatosRespuesta = await _unitOfWork.AsignaturaRepository.GetByID(id) };
+            return new RespuestaGeneral<Asignatura>() 
+            {
+                Codigo = 1,
+                DatosRespuesta = await _unitOfWork.AsignaturaRepository.GetByID(id) 
+            };
         }
 
         public async Task<RespuestaGeneral> Add(Asignatura asignatura)
@@ -29,8 +37,9 @@ namespace UniversidadApi.Services.AsignaturaService
             asignatura = await _unitOfWork.AsignaturaRepository.Add(asignatura);
             await _unitOfWork.SaveChanges();
             _unitOfWork.Dispose();
-            return new RespuestaGeneral(1)
+            return new RespuestaGeneral<Asignatura>()
             {
+                Codigo = 1,
                 DatosRespuesta = asignatura
             };
         }
@@ -39,17 +48,21 @@ namespace UniversidadApi.Services.AsignaturaService
         {
             //Si la asignatura no existe
             if (!await _unitOfWork.AsignaturaRepository.Exists(asignatura.Id))
-                return new RespuestaGeneral(0, $"{nameof(Asignatura)} no existe.");
+                return new RespuestaGeneral<Asignatura>(0, $"{nameof(Asignatura)} no existe.");
 
             try
             {
                 asignatura = _unitOfWork.AsignaturaRepository.Update(asignatura);
                 await _unitOfWork.SaveChanges();
-                return new RespuestaGeneral(1) { DatosRespuesta = asignatura };
+                return new RespuestaGeneral<Asignatura>() 
+                { 
+                    Codigo = 1,
+                    DatosRespuesta = asignatura 
+                };
             }
             catch (Exception ex)
             {
-                return new RespuestaGeneral(0, ex.ToString());
+                return new RespuestaGeneral<Asignatura>(0, ex.ToString());
             }
         }
     }

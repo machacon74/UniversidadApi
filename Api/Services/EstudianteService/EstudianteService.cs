@@ -20,24 +20,27 @@ namespace UniversidadApi.Services.EstudianteService
             estudiante = await _unitOfWork.EstudianteRepository.Add(estudiante);
             await _unitOfWork.SaveChanges();
             _unitOfWork.Dispose();
-            return new RespuestaGeneral(1)
+            return new RespuestaGeneral<Estudiante>()
             {
+                Codigo = 1,
                 DatosRespuesta = estudiante
             };
         }
 
         public async Task<RespuestaGeneral> GetAll()
         {
-            return new RespuestaGeneral(1)
+            return new RespuestaGeneral<List<Estudiante>>()
             {
+                Codigo = 1,
                 DatosRespuesta = await _unitOfWork.EstudianteRepository.GetAll().ToListAsync()
             };
         }
 
         public async Task<RespuestaGeneral> GetById(int id)
         {
-            return new RespuestaGeneral(1)
+            return new RespuestaGeneral<Estudiante>()
             {
+                Codigo = id,
                 DatosRespuesta = await _unitOfWork.EstudianteRepository.GetByID(id)
             };
         }
@@ -50,8 +53,9 @@ namespace UniversidadApi.Services.EstudianteService
             estudiante = _unitOfWork.EstudianteRepository.Update(estudiante);
             await _unitOfWork.SaveChanges();
             _unitOfWork.Dispose();
-            return new RespuestaGeneral(1)
+            return new RespuestaGeneral<Estudiante>()
             {
+                Codigo = 1,
                 DatosRespuesta = estudiante
             };
         }

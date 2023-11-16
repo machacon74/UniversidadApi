@@ -14,16 +14,18 @@ namespace UniversidadApi.Services.GeneroService
 
         public async Task<RespuestaGeneral> GetAll()
         {
-            return new RespuestaGeneral(1)
+            return new RespuestaGeneral<List<Genero>>()
             {
+                Codigo = 1,
                 DatosRespuesta = await _unitOfWork.GeneroRepository.GetAll().ToListAsync()
             };
         }
 
         public async Task<RespuestaGeneral> GetById(short id)
         {
-            return new RespuestaGeneral(1)
+            return new RespuestaGeneral<Genero>()
             {
+                Codigo = 1,
                 DatosRespuesta = await _unitOfWork.GeneroRepository.GetByID(id)
             };
         }
@@ -32,8 +34,9 @@ namespace UniversidadApi.Services.GeneroService
         {
             genero = await _unitOfWork.GeneroRepository.Add(genero);
             await _unitOfWork.SaveChanges();
-            return new RespuestaGeneral(1)
+            return new RespuestaGeneral<Genero>()
             {
+                Codigo = 1,
                 DatosRespuesta = genero
             };
         }
@@ -46,8 +49,9 @@ namespace UniversidadApi.Services.GeneroService
 
             genero = _unitOfWork.GeneroRepository.Update(genero);
             await _unitOfWork.SaveChanges();
-            return new RespuestaGeneral(1)
+            return new RespuestaGeneral<Genero>()
             {
+                Codigo = 1,
                 DatosRespuesta = genero
             };
         }
