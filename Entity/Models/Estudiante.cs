@@ -15,7 +15,11 @@ namespace Entity.Models
         [Range(1, 10)]
         public int Curso { get; set; }
 
-        public Estudiante(int id, string identificacion, string nombres, string apellidos, int edad, short idGenero, int curso, bool activo) : base(id, activo)
+		public Estudiante()
+		{
+		}
+
+		public Estudiante(int id, string identificacion, string nombres, string apellidos, int edad, short idGenero, int curso, bool activo) : base(id, activo)
         {
             Identificacion = identificacion;
             Nombres = nombres;

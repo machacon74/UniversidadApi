@@ -9,7 +9,11 @@ namespace Entity.Models
         [Range(1, 10)]
         public short Creditos { get; set; }
 
-        public Asignatura(int id, string nombre, short creditos, bool activo) : base(id, activo)
+		public Asignatura()
+		{
+		}
+
+		public Asignatura(int id, string nombre, short creditos, bool activo) : base(id, activo)
         {
             Nombre = nombre;
             Creditos = creditos;

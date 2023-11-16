@@ -14,7 +14,11 @@ namespace Entity.Models
         [Precision(3, 2)]
         public decimal Nota { get; set; }
 
-        public Calificacion(int id, int idEstudiante, int idAsignatura, short corte, decimal nota, bool activo) : base(id, activo)
+		public Calificacion()
+		{
+		}
+
+		public Calificacion(int id, int idEstudiante, int idAsignatura, short corte, decimal nota, bool activo) : base(id, activo)
         {
             IdEstudiante = idEstudiante;
             IdAsignatura = idAsignatura;
